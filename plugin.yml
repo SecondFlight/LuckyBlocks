@@ -1,0 +1,8 @@
+name: LuckyBlocks
+main: io.github.secondflight.LuckyBlocks.LuckyBlocks
+version: 0.01
+
+description: >
+                 A remake of the popular Lucky Blocks mod using bukkit
+
+commands:
