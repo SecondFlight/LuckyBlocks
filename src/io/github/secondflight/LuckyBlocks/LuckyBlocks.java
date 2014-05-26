@@ -1,6 +1,7 @@
 package io.github.secondflight.LuckyBlocks;
 
 import java.awt.Color;
+import java.lang.invoke.SwitchPoint;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,6 +11,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,6 +23,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.Potion;
+import org.bukkit.potion.PotionType;
 
 // secondflight.github.io/cheatystick and secondflight.github.io/luckyblocks :)
 
@@ -45,14 +50,26 @@ public class LuckyBlocks extends JavaPlugin implements Listener {
 		
 			saveConfig();
 }
-
-
-
+/**
+		public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
+		{
+			Player player = (Player) sender;
+			
+			
+			
+			//for debugging, seems to be broken :(
+			if(commandLabel.equalsIgnoreCase("test")) {
+				potionItems(player.getLocation(), player);
+				player.sendMessage("hello");
+			}
+			return false;
+		}
+**/
 	@EventHandler
 	public void breakListener(BlockBreakEvent event) {
-		Player p = event.getPlayer();
+		
 		if (event.getBlock() != null && event.getBlock().getState().getType() == Material.SPONGE) {
-			
+			Player p = event.getPlayer();
 			
 			event.setCancelled(true);
 			
@@ -123,15 +140,31 @@ public class LuckyBlocks extends JavaPlugin implements Listener {
 				case 54:
 				case 55:
 				case 56:
-				case 57: break;	
+				case 57: potionItems(l, p); break;	
+				
+				
 					
 				//
 				//  Materials
 				//
 			}
-						
+			//note: you can put any method below here
+			//if you want to test it; if you put it
+			//below, it will be fired every time a
+			//sponge block is broken.
+			//example:
+			//
+			//potionItems(l, p);
 		}
 	}
+	public static int randomNumber(int lower, int upper) {
+		return lower + (int)(Math.random() * ((upper - lower) + 1));
+	}
+	
+	public static boolean randomBoolean() {
+		return Math.random() < 0.5;
+	}
+	
 	public void luckyTools(int i, Location l, Player p) {
 		//TODO: add lucky armor
 		
@@ -530,8 +563,30 @@ public class LuckyBlocks extends JavaPlugin implements Listener {
 	}
 	
 	public void potionItems(Location l, Player p) {
-		//TODO: add some code, it's lonely in here
-		p.sendMessage("Potions should spawn here, but they're a crapton of work and at the time I'm writing this I don't really feel like doing a crapton of work.");
+		World w = p.getWorld();
+
+		for (int i = 1; i < (randomNumber(4, 8)); ++i) {
+			
+			
+			Potion potion;
+			
+			switch (randomNumber(1, 12)) {
+			case 1: potion = new Potion(PotionType.FIRE_RESISTANCE, randomNumber(1, PotionType.FIRE_RESISTANCE.getMaxLevel())); potion.setSplash(randomBoolean()); potion.setHasExtendedDuration(randomBoolean()); w.dropItemNaturally(l,potion.toItemStack(1)); break;
+			case 2: potion = new Potion(PotionType.INSTANT_DAMAGE, randomNumber(1, PotionType.INSTANT_DAMAGE.getMaxLevel()));  potion.setSplash(randomBoolean()); w.dropItemNaturally(l,potion.toItemStack(1)); break;
+			case 3: potion = new Potion(PotionType.INSTANT_HEAL, randomNumber(1, PotionType.INSTANT_HEAL.getMaxLevel()));  potion.setSplash(randomBoolean()); w.dropItemNaturally(l,potion.toItemStack(1)); break;
+			case 4: potion = new Potion(PotionType.INVISIBILITY, randomNumber(1, PotionType.INVISIBILITY.getMaxLevel()));  potion.setSplash(randomBoolean()); potion.setHasExtendedDuration(randomBoolean()); w.dropItemNaturally(l,potion.toItemStack(1)); break;
+			case 5: potion = new Potion(PotionType.NIGHT_VISION, randomNumber(1, PotionType.NIGHT_VISION.getMaxLevel()));  potion.setSplash(randomBoolean()); potion.setHasExtendedDuration(randomBoolean()); w.dropItemNaturally(l,potion.toItemStack(1)); break;
+			case 6: potion = new Potion(PotionType.POISON, randomNumber(1, PotionType.POISON.getMaxLevel()));  potion.setSplash(randomBoolean()); potion.setHasExtendedDuration(randomBoolean()); w.dropItemNaturally(l,potion.toItemStack(1)); break;
+			case 7: potion = new Potion(PotionType.REGEN, randomNumber(1, PotionType.REGEN.getMaxLevel()));  potion.setSplash(randomBoolean()); potion.setHasExtendedDuration(randomBoolean()); w.dropItemNaturally(l,potion.toItemStack(1)); break;
+			case 8: potion = new Potion(PotionType.SLOWNESS, randomNumber(1, PotionType.SLOWNESS.getMaxLevel()));  potion.setSplash(randomBoolean()); potion.setHasExtendedDuration(randomBoolean()); w.dropItemNaturally(l,potion.toItemStack(1)); break;
+			case 9: potion = new Potion(PotionType.SPEED, randomNumber(1, PotionType.SPEED.getMaxLevel()));  potion.setSplash(randomBoolean()); potion.setHasExtendedDuration(randomBoolean()); w.dropItemNaturally(l,potion.toItemStack(1)); break;
+			case 10: potion = new Potion(PotionType.STRENGTH, randomNumber(1, PotionType.STRENGTH.getMaxLevel()));  potion.setSplash(randomBoolean()); potion.setHasExtendedDuration(randomBoolean()); w.dropItemNaturally(l,potion.toItemStack(1)); break;
+			case 11: potion = new Potion(PotionType.WATER_BREATHING, randomNumber(1, PotionType.WATER_BREATHING.getMaxLevel()));  potion.setSplash(randomBoolean()); potion.setHasExtendedDuration(randomBoolean()); w.dropItemNaturally(l,potion.toItemStack(1)); break;
+			case 12: potion = new Potion(PotionType.WEAKNESS, randomNumber(1, PotionType.WEAKNESS.getMaxLevel()));  potion.setSplash(randomBoolean()); potion.setHasExtendedDuration(randomBoolean()); w.dropItemNaturally(l,potion.toItemStack(1)); break;
+			
+			}
+			
+		}
 	}
 
 	public void brewingItems(Location l, Player p) {

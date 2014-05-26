@@ -6,3 +6,5 @@ description: >
                  A remake of the popular Lucky Blocks mod using bukkit
 
 commands:
+  test:
+    description: for debugging
