@@ -134,13 +134,56 @@ public class LuckyBlocks extends JavaPlugin implements Listener {
 				case 48:
 				case 49:
 				case 50: brewingItems(l, p); break;
-				case 51:
+				case 51: endPortalFrames(l, p); break;
 				case 52:
 				case 53:
-				case 54:
+				case 54: TNT(l, p); break;
 				case 55:
 				case 56:
-				case 57: potionItems(l, p); break;	
+				case 57: obsidian(l, p); break;	
+				case 58:
+				case 59: enchantmentTable(l, p); break;
+				case 60: dragonEgg(l, p); break;
+				case 61:
+				case 62: enderChests(l, p); break;
+				case 63: beacon(l, p); break;
+				case 64:
+				case 65:
+				case 66: droppers(l, p); break;
+				case 67:
+				case 68:
+				case 69: hay(l, p); break;
+				case 70:
+				case 71:
+				case 72: gold(l, p); break;
+				case 73:
+				case 74: gasPoweredStick(l, p); break;
+				case 75:
+				case 76: paintings(l, p); break;
+				case 77:
+				case 78: saddles(l, p); break;
+				case 79:
+				case 80:
+				case 81: cake(l, p); break;
+				case 82:
+				case 83:
+				case 84: rottenFlesh(l, p); break;
+				case 85: netherStar(l, p); break;
+				case 86:
+				case 87: romanticRose(l, p); break;
+				case 88:
+				case 89: mobHeads(l, p); break;
+				case 90:
+				case 91:
+				case 92: enderPearls(l, p); break;
+				case 93:
+				case 94:
+				case 95:
+				case 96:
+				case 97:
+				case 98:
+				case 99: break;
+					
 				
 				
 					
@@ -635,5 +678,139 @@ public class LuckyBlocks extends JavaPlugin implements Listener {
 				case 34: w.dropItemNaturally(l, new ItemStack(Material.SPECKLED_MELON)); break;
 			}
 		}
+	}
+
+	public void endPortalFrames(Location l, Player p) {
+		World w = p.getWorld();
+		
+		for (int i = 1; i < (randomNumber(2, 6) + 1); i++) {
+			w.dropItemNaturally(l, new ItemStack(Material.ENDER_PORTAL_FRAME));
+		}
+	}
+
+	public void TNT(Location l, Player p) {
+		World w = p.getWorld();
+		
+		for (int i = 1; i < 9; i++) {
+			w.dropItemNaturally(l, new ItemStack(Material.TNT));
+		}
+	}
+
+	public void obsidian(Location l, Player p) {
+		World w = p.getWorld();
+		
+		for (int i = 1; i < 15; i++) {
+			w.dropItemNaturally(l, new ItemStack(Material.OBSIDIAN));
+		}
+	}
+
+	public void enchantmentTable(Location l, Player p) {
+	World w = p.getWorld();
+	
+	w.dropItemNaturally(l, new ItemStack(Material.ENCHANTMENT_TABLE));
+	}
+
+	public void dragonEgg(Location l, Player p) {
+		World w = p.getWorld();
+		
+		w.dropItemNaturally(l, new ItemStack(Material.DRAGON_EGG));
+	}
+
+	public void enderChests(Location l, Player p) {
+		World w = p.getWorld();
+		
+		for (int i = 1; i < 3; i++) {
+			w.dropItemNaturally(l, new ItemStack(Material.ENDER_CHEST));
+		}
+	}
+
+	public void beacon(Location l, Player p) {
+		World w = p.getWorld();
+		
+		w.dropItemNaturally(l, new ItemStack(Material.BEACON));
+	}
+
+	public void droppers(Location l, Player p) {
+		World w = p.getWorld();
+
+		w.dropItemNaturally(l, new ItemStack(Material.DROPPER, 8));
+	}
+	
+	public void hay(Location l, Player p) {
+		World w = p.getWorld();
+
+		w.dropItemNaturally(l, new ItemStack(Material.HAY_BLOCK, 8));
+	}
+	
+	public void gold(Location l, Player p) {
+		World w = p.getWorld();
+
+		w.dropItemNaturally(l, new ItemStack(Material.GOLD_INGOT, randomNumber(8, 16)));
+	}
+
+	public void gasPoweredStick(Location l, Player p) {
+		World w = p.getWorld();
+
+		w.dropItemNaturally(l, new ItemStack(Material.STICK));
+	
+		//TODO: make a nice title and maybe some lore for this item
+	}
+
+	public void paintings(Location l, Player p) {
+		World w = p.getWorld();
+
+		w.dropItemNaturally(l, new ItemStack(Material.PAINTING, 4));
+	}
+
+	public void saddles(Location l, Player p) {
+		World w = p.getWorld();
+
+		w.dropItemNaturally(l, new ItemStack(Material.SADDLE, 2));
+	}
+	
+	public void cake(Location l, Player p) {
+		World w = p.getWorld();
+
+		w.dropItemNaturally(l, new ItemStack(Material.CAKE));
+	}
+
+	public void rottenFlesh(Location l, Player p) {
+		World w = p.getWorld();
+
+		w.dropItemNaturally(l, new ItemStack(Material.ROTTEN_FLESH));
+	}
+
+	public void netherStar(Location l, Player p) {
+		World w = p.getWorld();
+
+		w.dropItemNaturally(l, new ItemStack(Material.NETHER_STAR));
+	}
+
+	public void romanticRose(Location l, Player p) {
+		World w = p.getWorld();
+
+		w.dropItemNaturally(l, new ItemStack(Material.RED_ROSE));
+		//TODO: add romantic rose title
+	}
+
+	public void mobHeads(Location l, Player p) {
+		for (int i = 1; i < (1 + randomNumber(1, 3)); ++i) {
+			World w = p.getWorld();
+			//TODO: figure out how to spawn heads
+			switch (randomNumber(1, 3)) {
+				case 1: w.dropItemNaturally(l, new ItemStack(Material.SKULL)); break;
+				case 2: w.dropItemNaturally(l, new ItemStack(Material.SKULL)); break;
+				case 3: w.dropItemNaturally(l, new ItemStack(Material.SKULL)); break;
+				case 4: w.dropItemNaturally(l, new ItemStack(Material.SKULL)); break;
+				case 5: w.dropItemNaturally(l, new ItemStack(Material.SKULL)); break;
+			}
+		}
+	}
+
+	public void enderPearls(Location l, Player p) {
+		World w = p.getWorld();
+
+		w.dropItemNaturally(l, new ItemStack(Material.EYE_OF_ENDER, 5));
+		w.dropItemNaturally(l, new ItemStack(Material.ENDER_PEARL, 10));
 	}
 }
